@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { Text, View, SafeAreaView } from "react-native";
 
 import firebase from "firebase";
 
@@ -59,6 +59,7 @@ export class App extends Component {
             }
         });
     }
+
     render() {
         const { loggedIn, loaded } = this.state;
         if (!loaded) {
@@ -89,18 +90,21 @@ export class App extends Component {
         }
 
         return (
-            <Provider store={store}>
-                <NavigationContainer>
-                    <Stack.Navigator initialRouteName="Main">
-                        <Stack.Screen
-                            name="Main"
-                            component={MainScreen}
-                            options={{ headerShown: false }}
-                        />
-                        <Stack.Screen name="Add" component={AddScreen} />
-                    </Stack.Navigator>
-                </NavigationContainer>
-            </Provider>
+            <SafeAreaView style={{ flex: 1 }}>
+                <Provider store={store}>
+                    <StatusBar />
+                    <NavigationContainer>
+                        <Stack.Navigator initialRouteName="Main">
+                            <Stack.Screen
+                                name="Main"
+                                component={MainScreen}
+                                options={{ headerShown: false }}
+                            />
+                            <Stack.Screen name="Add" component={AddScreen} />
+                        </Stack.Navigator>
+                    </NavigationContainer>
+                </Provider>
+            </SafeAreaView>
         );
     }
 }
