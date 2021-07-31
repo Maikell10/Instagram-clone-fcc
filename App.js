@@ -4,6 +4,13 @@ import { Text, View } from "react-native";
 
 import firebase from "firebase";
 
+// import for Redux
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import rootReducer from "./redux/reducers";
+import thunk from "redux-thunk";
+const store = createStore(rootReducer, applyMiddleware(thunk));
+
 const firebaseConfig = {
     apiKey: "AIzaSyCxKFuvEkLhuUYSK9SjY3CngmvY1m6TljY",
     authDomain: "instagram-clone-fcc-860a2.firebaseapp.com",
@@ -22,8 +29,9 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 
 import LandingScreen from "./components/auth/Landing";
-import Register from "./components/auth/Register";
-import Login from "./components/auth/Login";
+import RegisterScreen from "./components/auth/Register";
+import LoginScreen from "./components/auth/Login";
+import MainScreen from "./components/Main";
 
 const Stack = createStackNavigator();
 
@@ -69,17 +77,20 @@ export class App extends Component {
                             component={LandingScreen}
                             options={{ headerShown: false }}
                         />
-                        <Stack.Screen name="Register" component={Register} />
-                        <Stack.Screen name="Login" component={Login} />
+                        <Stack.Screen
+                            name="Register"
+                            component={RegisterScreen}
+                        />
+                        <Stack.Screen name="Login" component={LoginScreen} />
                     </Stack.Navigator>
                 </NavigationContainer>
             );
         }
 
         return (
-            <View style={{ flex: 1, justifyContent: "center" }}>
-                <Text>User is Logged In</Text>
-            </View>
+            <Provider store={store}>
+                <MainScreen />
+            </Provider>
         );
     }
 }
