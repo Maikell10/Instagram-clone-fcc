@@ -4,7 +4,7 @@ import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityI
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchUser } from "../redux/actions/index";
+import { fetchUser, fetchUserPosts } from "../redux/actions/index";
 
 import FeedScreen from "./main/Feed";
 import ProfileScreen from "./main/Profile";
@@ -17,6 +17,7 @@ const EmptyScreen = () => {
 export class Main extends Component {
     componentDidMount() {
         this.props.fetchUser();
+        this.props.fetchUserPosts();
     }
     render() {
         return (
@@ -78,6 +79,7 @@ const mapDispatchProps = (dispatch) =>
     bindActionCreators(
         {
             fetchUser,
+            fetchUserPosts,
         },
         dispatch
     );

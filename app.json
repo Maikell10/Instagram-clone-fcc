@@ -27,6 +27,8 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "description": "Instagram Clone from Free Code Camp Course",
+    "githubUrl": "https://github.com/Maikell10/Instagram-clone-fcc"
   }
 }
