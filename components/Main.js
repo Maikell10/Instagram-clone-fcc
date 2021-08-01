@@ -5,7 +5,11 @@ import firebase from "firebase";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { fetchUser, fetchUserPosts } from "../redux/actions/index";
+import {
+    fetchUser,
+    fetchUserPosts,
+    fetchUserFollowing,
+} from "../redux/actions/index";
 
 import FeedScreen from "./main/Feed";
 import ProfileScreen from "./main/Profile";
@@ -20,6 +24,7 @@ export class Main extends Component {
     componentDidMount() {
         this.props.fetchUser();
         this.props.fetchUserPosts();
+        this.props.fetchUserFollowing();
     }
     render() {
         return (
@@ -104,6 +109,7 @@ const mapDispatchProps = (dispatch) =>
         {
             fetchUser,
             fetchUserPosts,
+            fetchUserFollowing,
         },
         dispatch
     );
