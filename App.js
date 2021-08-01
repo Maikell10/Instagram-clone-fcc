@@ -96,11 +96,7 @@ export class App extends Component {
                     <StatusBar />
                     <NavigationContainer>
                         <Stack.Navigator initialRouteName="Main">
-                            <Stack.Screen
-                                name="Main"
-                                component={MainScreen}
-                                options={{ headerShown: false }}
-                            />
+                            <Stack.Screen name="Main" component={MainScreen} />
                             <Stack.Screen
                                 name="Add"
                                 component={AddScreen}
