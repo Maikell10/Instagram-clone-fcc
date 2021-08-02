@@ -85,7 +85,7 @@ export function fetchUserFollowing() {
     };
 }
 
-export function fetchUsersData(uid) {
+export function fetchUsersData(uid, getPosts) {
     return (dispatch, getState) => {
         const found = getState().usersState.users.some((el) => el.uid === uid);
 
@@ -104,11 +104,13 @@ export function fetchUsersData(uid) {
                             type: USERS_DATA_STATE_CHANGE,
                             user,
                         });
-                        dispatch(fetchUsersFollowingPosts(user.uid));
                     } else {
                         console.log("Does not exist");
                     }
                 });
+            if (getPosts) {
+                dispatch(fetchUsersFollowingPosts(uid));
+            }
         }
     };
 }

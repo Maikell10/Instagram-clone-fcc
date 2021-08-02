@@ -6,7 +6,7 @@ import {
 
 const initialState = {
     users: [],
-    usersLoaded: 0,
+    usersFollowingLoaded: 0,
 };
 
 export const users = (state = initialState, action) => {
@@ -27,10 +27,7 @@ export const users = (state = initialState, action) => {
                 ),
             };
         case CLEAR_DATA:
-            return {
-                users: [],
-                usersLoaded: 0,
-            };
+            return initialState;
         default:
             return state;
     }
